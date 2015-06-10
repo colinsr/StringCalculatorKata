@@ -7,14 +7,12 @@ namespace StringCalculatorKata
     {
         public int Add(string numbers)
         {
-            if (numbers == string.Empty)
-            {
+            if (NoNumbersFound(numbers)) 
                 return 0;
-            }
+
             if (FoundComma(numbers))
-            {
                 return SumAllNumbers(numbers);
-            }
+
             return int.Parse(numbers);
         }
 
@@ -27,6 +25,11 @@ namespace StringCalculatorKata
         private bool FoundComma(string numbers)
         {
             return numbers.Contains(",");
+        }
+
+        private bool NoNumbersFound(string numbers)
+        {
+            return numbers == string.Empty;
         }
     }
 
