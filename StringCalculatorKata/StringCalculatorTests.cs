@@ -16,6 +16,18 @@ namespace StringCalculatorKata
 
             Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        public void ShouldReturn_One_WhenGiven1()
+        {
+            var sc = new StringCalculator();
+            string numbers = "1";
+            int expected = 1;
+
+            int result = sc.Add(numbers);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }
 
