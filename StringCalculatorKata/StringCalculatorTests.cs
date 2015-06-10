@@ -28,6 +28,18 @@ namespace StringCalculatorKata
 
             Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        public void ShouldReturn_Three_WhenGiven1_And_2()
+        {
+            var sc = new StringCalculator();
+            string numbers = "1,2";
+            int expected = 3;
+
+            int result = sc.Add(numbers);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }
 
