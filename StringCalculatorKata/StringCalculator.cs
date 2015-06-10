@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace StringCalculatorKata
 {
@@ -10,11 +11,24 @@ namespace StringCalculatorKata
             {
                 return 0;
             }
-            if (numbers == "1,2")
+            if (FoundComma(numbers))
             {
-                return 3;
+                return SumAllNumbers(numbers);
             }
             return int.Parse(numbers);
         }
+
+        private int SumAllNumbers(string numbers)
+        {
+            string[] splitNumbers = numbers.Split(',');
+            return splitNumbers.Select(s => int.Parse(s)).ToArray().Sum();
+        }
+
+        private bool FoundComma(string numbers)
+        {
+            return numbers.Contains(",");
+        }
     }
+
+
 }

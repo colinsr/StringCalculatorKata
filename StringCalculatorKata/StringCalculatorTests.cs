@@ -36,11 +36,11 @@ namespace StringCalculatorKata
         }
 
         [Test]
-        public void ShouldReturn_Three_WhenGiven1_And_2()
+        [TestCase("1,2", 3)]
+        [TestCase("5,2", 7)]
+        [TestCase("9,9", 18)]
+        public void ShouldReturn_Sum_WhenGiven2Numbers(string numbers, int expected)
         {
-            string numbers = "1,2";
-            int expected = 3;
-
             int result = _stringCalculator.Add(numbers);
 
             Assert.AreEqual(expected, result);
