@@ -5,14 +5,21 @@ namespace StringCalculatorKata
     [TestFixture]
     public class StringCalculatorTests
     {
+        private StringCalculator _stringCalculator;
+
+        [SetUp]
+        public void SetUp()
+        {
+            this._stringCalculator = new StringCalculator();
+        }
+
         [Test]
         public void ShouldReturn_Zero_WhenGivenEmptyString()
         {
-            var sc = new StringCalculator();
             string numbers = string.Empty;
             int expected = 0;
 
-            int result = sc.Add(numbers);
+            int result = _stringCalculator.Add(numbers);
 
             Assert.AreEqual(expected, result);
         }
@@ -20,11 +27,10 @@ namespace StringCalculatorKata
         [Test]
         public void ShouldReturn_One_WhenGiven1()
         {
-            var sc = new StringCalculator();
             string numbers = "1";
             int expected = 1;
 
-            int result = sc.Add(numbers);
+            int result = _stringCalculator.Add(numbers);
 
             Assert.AreEqual(expected, result);
         }
@@ -32,11 +38,10 @@ namespace StringCalculatorKata
         [Test]
         public void ShouldReturn_Three_WhenGiven1_And_2()
         {
-            var sc = new StringCalculator();
             string numbers = "1,2";
             int expected = 3;
 
-            int result = sc.Add(numbers);
+            int result = _stringCalculator.Add(numbers);
 
             Assert.AreEqual(expected, result);
         }
