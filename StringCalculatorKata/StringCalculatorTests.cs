@@ -25,11 +25,11 @@ namespace StringCalculatorKata
         }
 
         [Test]
-        public void ShouldReturn_One_WhenGiven1()
+        [TestCase("1",1)]
+        [TestCase("4", 4)]
+        [TestCase("7", 7)]
+        public void ShouldReturn_TheNumber_WhenGivenSingleNumber(string numbers, int expected)
         {
-            string numbers = "1";
-            int expected = 1;
-
             int result = _stringCalculator.Add(numbers);
 
             Assert.AreEqual(expected, result);
