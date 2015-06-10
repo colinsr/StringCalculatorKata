@@ -45,14 +45,27 @@ namespace StringCalculatorKata
 
             Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        [TestCase("1,2,3", 6)]
+        [TestCase("5,2,7,14", 28)]
+        [TestCase("9,9,9,9,9,9,9,9,9,9", 90)]
+        public void ShouldReturn_Sum_WhenGivenMultipleNumbers(string numbers, int expected)
+        {
+            int result = _stringCalculator.Add(numbers);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }
 
-//1. Create a String calculator with a method int Add(string numbers)
-//a. The method can take 0, 1, or 2 numbers and will return their sum.
-//b. An empty string will return 0.
-//c. Example inputs: “”, “1”, or “1,2”
-//d. Start with the simplest test case of an empty string. Then 1 number. Then 2 numbers.
-//e. Remember to solve things as simply as possible, forcing yourself to write tests for things you
-//didn’t think about.
-//f. Remember to refactor after each passing test.
+//2. Allow the Add method to handle an unknown number of arguments/numbers.
+
+//1. Create a String calculator with a method int Add(string numbers) --done
+//a. The method can take 0, 1, or 2 numbers and will return their sum. --done
+//b. An empty string will return 0. --done
+//c. Example inputs: “”, “1”, or “1,2” --done
+//d. Start with the simplest test case of an empty string. Then 1 number. Then 2 numbers. --done
+//e. Remember to solve things as simply as possible, forcing yourself to write tests for things you  --done
+//didn’t think about.  --done
+//f. Remember to refactor after each passing test.  --done
