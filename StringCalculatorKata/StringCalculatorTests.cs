@@ -67,8 +67,25 @@ namespace StringCalculatorKata
 
             Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        [TestCase("//foo\n1\n2foo3", 6)]
+        [TestCase("//( * )\n5,2\n7( * )14", 28)]
+        [TestCase("//###\n9,9###9\n9,9,9,9###9,9,9", 90)]
+        public void ShouldReturn_Sum_WhenGivenMultipleNumbers_SeperatedByCustomDelimiter(string numbers, int expected)
+        {
+            int result = _stringCalculator.Add(numbers);
+
+            Assert.AreEqual(expected, result);
+        }
     }
 }
+
+//4. Allow the Add method to handle a different delimiter:
+//a. To change the delimiter, the beginning of the string will contain a separate line that looks like
+//this: “//[delimiter]\n[numbers]”
+//b. Example: “//;\n1;2” should return 3 (the delimiter is ;)
+//c. This first line is optional; all existing scenarios (using , or \n) should work as before.
 
 //3. Allow the Add method to handle new lines between numbers (instead of commas).
 //a. Example: “1\n2,3” should return 6.
