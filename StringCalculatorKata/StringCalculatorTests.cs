@@ -50,7 +50,18 @@ namespace StringCalculatorKata
         [TestCase("1,2,3", 6)]
         [TestCase("5,2,7,14", 28)]
         [TestCase("9,9,9,9,9,9,9,9,9,9", 90)]
-        public void ShouldReturn_Sum_WhenGivenMultipleNumbers(string numbers, int expected)
+        public void ShouldReturn_Sum_WhenGivenMultipleNumbers_SeperatedByCommas(string numbers, int expected)
+        {
+            int result = _stringCalculator.Add(numbers);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        [TestCase("1\n2,3", 6)]
+        [TestCase("5,2\n7,14", 28)]
+        [TestCase("9,9,9\n9,9,9,9,9,9,9", 90)]
+        public void ShouldReturn_Sum_WhenGivenMultipleNumbers_SeperatedByNewLines(string numbers, int expected)
         {
             int result = _stringCalculator.Add(numbers);
 
@@ -58,6 +69,11 @@ namespace StringCalculatorKata
         }
     }
 }
+
+//3. Allow the Add method to handle new lines between numbers (instead of commas).
+//a. Example: “1\n2,3” should return 6.
+//b. Example: “1,\n” is invalid, but you don’t need a test for this case.
+//c. Only test correct inputs – there is no need to deal with invalid inputs for this kata.
 
 //2. Allow the Add method to handle an unknown number of arguments/numbers.
 

@@ -10,10 +10,18 @@ namespace StringCalculatorKata
             if (NoNumbersFound(numbers)) 
                 return 0;
 
+            if (FoundNewLine(numbers))
+                numbers = numbers.Replace("\n", ",");
+
             if (FoundComma(numbers))
                 return SumAllNumbers(numbers);
 
             return int.Parse(numbers);
+        }
+
+        private bool FoundNewLine(string numbers)
+        {
+            return numbers.Contains("\n");
         }
 
         private int SumAllNumbers(string numbers)
