@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StringCalculatorKata
@@ -12,16 +13,28 @@ namespace StringCalculatorKata
             if (NoNumbersFound(numbers)) 
                 return 0;
 
-            if (FoundCustomDelimiter(numbers))
+            if (numbers.Length > 3 && FoundCustomDelimiter(numbers))
                 numbers = PrepForCustomDelimiters(numbers);
 
             if (FoundNewLine(numbers))
                 numbers = numbers.Replace("\n", ",");
 
+            if (ContainsNegatives(numbers))
+            {
+                IEnumerable<string> negatives = numbers.Split(',').Where(n => int.Parse(n) < 0);
+
+                throw new Exception("Negatives not allowed: " + string.Join(", ", negatives));
+            }
+
             if (FoundComma(numbers))
                 return SumAllNumbers(numbers);
 
             return int.Parse(numbers);
+        }
+
+        private bool ContainsNegatives(string numbers)
+        {
+            return numbers.Contains('-');
         }
 
         private string PrepForCustomDelimiters(string numbers)

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace StringCalculatorKata
 {
@@ -28,6 +29,8 @@ namespace StringCalculatorKata
         [TestCase("1",1)]
         [TestCase("4", 4)]
         [TestCase("7", 7)]
+        [TestCase("111", 111)]
+        [TestCase("11111", 11111)]
         public void ShouldReturn_TheNumber_WhenGivenSingleNumber(string numbers, int expected)
         {
             int result = _stringCalculator.Add(numbers);
@@ -78,8 +81,29 @@ namespace StringCalculatorKata
 
             Assert.AreEqual(expected, result);
         }
+
+        [Test]
+        [TestCase("-1,2", "Negatives not allowed: -1")]
+        [TestCase("-1,2,-3", "Negatives not allowed: -1, -3")]
+        [TestCase("-1,-2,-3\n-4", "Negatives not allowed: -1, -2, -3, -4")]
+        public void ShouldThrow_WhenGivenNegativeNumbers(string numbers, string expected)
+        {
+            try
+            {
+                _stringCalculator.Add(numbers);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
     }
 }
+
+//5. Calling Add with a negative number will throw an exception “Negatives not allowed: “ listing all
+//negative numbers that were in the list of numbers.
+//a. Example “-1,2” throws “Negatives not allowed: -1”
+//b. Example “2,-4,3,-5” throws “Negatives not allowed: -4,-5”
 
 //4. Allow the Add method to handle a different delimiter:
 //a. To change the delimiter, the beginning of the string will contain a separate line that looks like
